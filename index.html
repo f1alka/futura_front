@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HookahPlace Futura</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Экран приветствия -->
+    <div class="intro-screen" id="intro-screen">
+        <div class="intro-content">
+            <h1>HP FUTURA</h1>
+            <h2>Work project</h2>
+            <p>Автоматическая система разгрузки персонала</p>
+        </div>
+    </div>
+
+    <div class="container" id="main-content">
+        <div class="sidebar" id="sidebar">
+            <a href="./index.html" class="tab-button active">Main</a>
+            <a href="./mixes.html" class="tab-button">Mixes</a>
+            <a href="./table.html" class="tab-button">Table</a>
+            <a href="./regular.html" class="tab-button">Regular</a>
+        </div>
+
+        <div class="main-content">
+            <header class="header">
+                <h1>HookahPlace Futura</h1>
+                <p>Главные точки ресторанов</p>
+            </header>
+            <section class="content">
+                <div class="card">
+                    <div class="card-image" style="background-image: url('nikolskaya.jpg');"></div>
+                    <div class="card-content">
+                        <h2>Никольская</h2>
+                        <p>Никольская ул., 19-21/1</p>
+                        <p>HookahPlace Futura 2 расположен на главной пешеходной улице с уникальным дизайном интерьера и винтажной атмосферой.</p>
+                        <a href="https://hp-futura.ru/nikolskaya" class="button" target="_blank" rel="noopener noreferrer">Подробнее</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image" style="background-image: url('prospekt_mira.jpg');"></div>
+                    <div class="card-content">
+                        <h2>Проспект Мира</h2>
+                        <p>Просп. Мира, 36, стр. 1</p>
+                        <p>Интерьер вдохновлён ретро-футуризмом с паназиатской кухней и уникальным освещением. Отличное место для вечеринок и отдыха.</p>
+                        <a href="https://hp-futura.ru/mira" class="button" target="_blank" rel="noopener noreferrer">Подробнее</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Кнопка регистрации в правом верхнем углу -->
+    <div class="register-button">
+        <button onclick="openRegistrationWindow()">Регистрация</button>
+    </div>
+
+    <!-- Окно регистрации -->
+    <div id="registration-window" class="registration-window" style="display:none;">
+        <h2>Регистрация</h2>
+        <form id="register-form">
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <button class="close-btn" onclick="closeRegistrationWindow()">Закрыть</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
