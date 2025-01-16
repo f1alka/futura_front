@@ -1,4 +1,4 @@
-// Плавный переход между страницами
+//Плавный переход между страницами
 document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".tab-button");
 
