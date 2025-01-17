@@ -5,10 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HookahPlace Futura - Cards</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .table-container thead {
+            background-color: #f4f4f4;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .scrollable {
+            max-height: 800px; /* Высота прокрутки */
+            overflow-y: auto;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Левое меню -->
         <div class="sidebar">
             <a href="index.html" class="tab-button">Main</a>
             <a href="mixes.html" class="tab-button">Mixes</a>
@@ -25,57 +75,20 @@
 
             <section class="content">
                 <h2>Таблица постоянных клиентов</h2>
-                <p></p>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 20px;
-                    }
-            
-                    .table-container {
-                        width: 100%;
-                        max-width: 800px;
-                        margin: auto;
-                        border: 1px solid #ccc;
-                        border-radius: 8px;
-                        overflow: hidden;
-                    }
-            
-                    .table-container table {
-                        width: 100%;
-                        border-collapse: collapse;
-                    }
-            
-                    .table-container th,
-                    .table-container td {
-                        padding: 10px;
-                        text-align: left;
-                        border-bottom: 1px solid #ccc;
-                    }
-            
-                    .table-container thead {
-                        background-color: #f4f4f4;
-                        position: sticky;
-                        top: 0;
-                        z-index: 1;
-                    }
-            
-                    .scrollable {
-                        max-height: 300px; /* Высота прокрутки */
-                        overflow-y: auto;
-                    }
-                </style>
-            </head>
-            <body>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск по имени или фамилии..." onkeyup="searchTable()">
+                </div>
+
                 <div class="table-container">
                     <div class="scrollable">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Birthday</th>
-                                    <th>Average</th>
+                                    <th>Имя</th>
+                                    <th>Фамилия</th>
+                                    <th>Дата рождения</th>
+                                    <th>Скидка</th>
+                                    <th>Фото</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,69 +97,97 @@
                                     <td>Reeves</td>
                                     <td>10/18/1985</td>
                                     <td>0.1</td>
+                                    <td><img src="photo/1.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Graham</td>
                                     <td>Bonner</td>
                                     <td>12/07/1983</td>
                                     <td>0.9</td>
+                                    <td><img src="photo/2.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Warren</td>
                                     <td>Wheeler</td>
                                     <td>11/11/1984</td>
                                     <td>0.7</td>
+                                    <td><img src="photo/3.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Zena</td>
                                     <td>Hale</td>
                                     <td>06/17/1987</td>
                                     <td>0.3</td>
+                                    <td><img src="photo/4.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Julia</td>
                                     <td>Haupt</td>
                                     <td>03/15/1991</td>
                                     <td>1.0</td>
+                                    <td><img src="photo/5.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Rachel</td>
                                     <td>English</td>
                                     <td>02/25/1982</td>
                                     <td>0.3</td>
+                                    <td><img src="photo/6.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Lionel</td>
                                     <td>Barry</td>
                                     <td>02/17/1980</td>
                                     <td>0.5</td>
+                                    <td><img src="photo/7.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Zena</td>
                                     <td>Spears</td>
                                     <td>12/13/1981</td>
                                     <td>0.6</td>
+                                    <td><img src="photo/8.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Dillon</td>
                                     <td>Bradford</td>
                                     <td>01/20/1985</td>
                                     <td>0.4</td>
+                                    <td><img src="photo/9.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                                 <tr>
                                     <td>Haley</td>
                                     <td>Mcleod</td>
                                     <td>04/12/1980</td>
                                     <td>0.1</td>
+                                    <td><img src="photo/10.jpg" width="150" height="150" alt="Фото"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </body>
-            </html>
             </section>
         </div>
     </div>
+
+    <script>
+        function searchTable() {
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toUpperCase();
+            var table = document.querySelector('table');
+            var trs = table.querySelectorAll('tbody tr');
+
+            trs.forEach(function(row) {
+                var tdName = row.querySelector('td:nth-child(1)').textContent.toUpperCase();
+                var tdSurname = row.querySelector('td:nth-child(2)').textContent.toUpperCase();
+
+                if (tdName.indexOf(filter) > -1 || tdSurname.indexOf(filter) > -1) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
