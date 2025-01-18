@@ -3,46 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table</title>
+    <title>HookahPlace Futura - Worker</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f9;
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Стили для сайдбара */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .header h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .filter-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .filter-container select,
+        .search-container input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-container thead {
+            background-color: #ff4c4c;
+            color: white;
+        }
+
+        .table-container th {
+            font-weight: bold;
+        }
+
+        .table-container tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .table-container tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .scrollable {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .filter-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter-container button:hover {
+            background-color: #45a049;
+        }
+
+        .search-container input {
+            width: 300px;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <a href="./index.html" class="tab-button active">Main</a>
-            <a href="./mixes.html" class="tab-button">Mixes</a>
-            <a href="./table.html" class="tab-button">Table</a>
-            <a href="./regular.html" class="tab-button">Regular</a>
-            <a href="./cards.html" class="tab-button">Cards</a>
-            <a href="./workers.html" class="tab-button active">Workers</a>
+            <a href="index.html" class="tab-button">Main</a>
+            <a href="mixes.html" class="tab-button">Mixes</a>
+            <a href="table.html" class="tab-button">Table</a>
+            <a href="regular.html" class="tab-button">Regular</a>
+            <a href="cards.html" class="tab-button active">Cards</a>
+            <a href="workers.html" class="tab-button active">Workers</a>
         </div>
 
         <div class="main-content">
             <header class="header">
-                <h1>Table</h1>
-                <p>Данные из базы:</p>
+                <h1>HookahPlace Futura</h1>
+                <p>Список Работников</p>
             </header>
+
             <section class="content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for row in data %}
-                        <tr>
-                            <td>{{ row['id'] }}</td>
-                            <td>{{ row['title'] }}</td>
-                            <td>{{ row['description'] }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="filter-container">
+                    <input type="text" id="searchInput" placeholder="Поиск по имени или фамилии..." onkeyup="searchTable()">
+
+                    <select id="dateFilter" onchange="filterTable()">
+                        <option value="">Выберите дату</option>
+                        <option value="10/18/1985">10/18/1985</option>
+                        <option value="12/07/1983">12/07/1983</option>
+                        <option value="11/11/1984">11/11/1984</option>
+                        <option value="06/17/1987">06/17/1987</option>
+                    </select>
+
+                    <select id="shiftFilter" onchange="filterTable()">
+                        <option value="">Выберите смену</option>
+                        <option value="Ночная">Ночная смена</option>
+                        <option value="Дневная">Дневная смена</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <div class="scrollable">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>ФИО</th>
+                                    <th>Смена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10/18/1985</td>
+                                    <td>Gloria Reeves</td>
+                                    <td>Дневная</td>
+                                </tr>
+                                <tr>
+                                    <td>12/07/1983</td>
+                                    <td>Graham Bonner</td>
+                                    <td>Ночная</td>
+                                </tr>
+                                <tr>
+                                    <td>11/11/1984</td>
+                                    <td>Warren Wheeler</td>
+                                    <td>Дневная</td>
+                                </tr>
+                                <tr>
+                                    <td>06/17/1987</td>
+                                    <td>Zena Hale</td>
+                                    <td>Ночная</td>
+                                </tr>
+                                <tr>
+                                    <td>03/15/1991</td>
+                                    <td>Julia Haupt</td>
+                                    <td>Дневная</td>
+                                </tr>
+                                <tr>
+                                    <td>02/25/1982</td>
+                                    <td>Rachel English</td>
+                                    <td>Ночная</td>
+                                </tr>
+                                <tr>
+                                    <td>02/17/1980</td>
+                                    <td>Lionel Barry</td>
+                                    <td>Дневная</td>
+                                </tr>
+                                <tr>
+                                    <td>12/13/1981</td>
+                                    <td>Zena Spears</td>
+                                    <td>Ночная</td>
+                                </tr>
+                                <tr>
+                                    <td>01/20/1985</td>
+                                    <td>Dillon Bradford</td>
+                                    <td>Дневная</td>
+                                </tr>
+                                <tr>
+                                    <td>04/12/1980</td>
+                                    <td>Haley Mcleod</td>
+                                    <td>Ночная</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
+
+    <script>
+        function searchTable() {
+            var input = document.getElementById('searchInput');
+            var filter = input.value.toUpperCase();
+            var table = document.querySelector('table');
+            var trs = table.querySelectorAll('tbody tr');
+
+            trs.forEach(function(row) {
+                var tdName = row.querySelector('td:nth-child(2)').textContent.toUpperCase();
+
+                if (tdName.indexOf(filter) > -1) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterTable() {
+            var dateFilter = document.getElementById('dateFilter').value.toUpperCase();
+            var shiftFilter = document.getElementById('shiftFilter').value.toUpperCase();
+            var table = document.querySelector('table');
+            var trs = table.querySelectorAll('tbody tr');
+
+            trs.forEach(function(row) {
+                var tdDate = row.querySelector('td:nth-child(1)').textContent.toUpperCase();
+                var tdShift = row.querySelector('td:nth-child(3)').textContent.toUpperCase();
+
+                if (
+                    (dateFilter === "" || tdDate.indexOf(dateFilter) > -1) &&
+                    (shiftFilter === "" || tdShift.indexOf(shiftFilter) > -1)
+                ) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
