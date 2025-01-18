@@ -11,39 +11,7 @@
             margin: 20px;
         }
 
-        .table-container {
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .table-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table-container th,
-        .table-container td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .table-container thead {
-            background-color: #f4f4f4;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-
-        .scrollable {
-            max-height: 800px; /* Высота прокрутки */
-            overflow-y: auto;
-        }
-
+        /* Стили для поиска */
         .search-container {
             margin-bottom: 20px;
         }
@@ -55,6 +23,98 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
+        /* Стили для контейнера карточек */
+        .cards-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            width: 250px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Стили для подробного описания */
+        .modal-description {
+            font-size: 16px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -65,126 +125,132 @@
             <a href="table.html" class="tab-button">Table</a>
             <a href="regular.html" class="tab-button">Regular</a>
             <a href="cards.html" class="tab-button active">Cards</a>
+            <a href="workers.html" class="tab-button active">Workers</a>
         </div>
 
         <div class="main-content">
             <header class="header">
                 <h1>HookahPlace Futura</h1>
-                <p>Список постоянных клиентов</p>
+                <p>Карточки напитков</p>
             </header>
 
             <section class="content">
-                <h2>Таблица постоянных клиентов</h2>
                 <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Поиск по имени или фамилии..." onkeyup="searchTable()">
+                    <input type="text" id="searchInput" placeholder="Поиск по названию напитка..." onkeyup="searchCards()">
                 </div>
 
-                <div class="table-container">
-                    <div class="scrollable">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Имя</th>
-                                    <th>Фамилия</th>
-                                    <th>Дата рождения</th>
-                                    <th>Скидка</th>
-                                    <th>Фото</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Gloria</td>
-                                    <td>Reeves</td>
-                                    <td>10/18/1985</td>
-                                    <td>0.1</td>
-                                    <td><img src="photo/1.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Graham</td>
-                                    <td>Bonner</td>
-                                    <td>12/07/1983</td>
-                                    <td>0.9</td>
-                                    <td><img src="photo/2.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Warren</td>
-                                    <td>Wheeler</td>
-                                    <td>11/11/1984</td>
-                                    <td>0.7</td>
-                                    <td><img src="photo/3.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Zena</td>
-                                    <td>Hale</td>
-                                    <td>06/17/1987</td>
-                                    <td>0.3</td>
-                                    <td><img src="photo/4.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Julia</td>
-                                    <td>Haupt</td>
-                                    <td>03/15/1991</td>
-                                    <td>1.0</td>
-                                    <td><img src="photo/5.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Rachel</td>
-                                    <td>English</td>
-                                    <td>02/25/1982</td>
-                                    <td>0.3</td>
-                                    <td><img src="photo/6.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Lionel</td>
-                                    <td>Barry</td>
-                                    <td>02/17/1980</td>
-                                    <td>0.5</td>
-                                    <td><img src="photo/7.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Zena</td>
-                                    <td>Spears</td>
-                                    <td>12/13/1981</td>
-                                    <td>0.6</td>
-                                    <td><img src="photo/8.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Dillon</td>
-                                    <td>Bradford</td>
-                                    <td>01/20/1985</td>
-                                    <td>0.4</td>
-                                    <td><img src="photo/9.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                                <tr>
-                                    <td>Haley</td>
-                                    <td>Mcleod</td>
-                                    <td>04/12/1980</td>
-                                    <td>0.1</td>
-                                    <td><img src="photo/10.jpg" width="150" height="150" alt="Фото"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="cards-container">
+                    <div class="cards-wrapper" id="cardsWrapper">
+                        <div class="card" onclick="openModal('modal1')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 1</h3>
+                            <p>Описание напитка 1</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal2')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 2</h3>
+                            <p>Описание напитка 2</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal3')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 3</h3>
+                            <p>Описание напитка 3</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal4')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 4</h3>
+                            <p>Описание напитка 4</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal5')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 5</h3>
+                            <p>Описание напитка 5</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal6')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 6</h3>
+                            <p>Описание напитка 6</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal7')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 7</h3>
+                            <p>Описание напитка 7</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal8')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 8</h3>
+                            <p>Описание напитка 8</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal9')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 9</h3>
+                            <p>Описание напитка 9</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal10')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 10</h3>
+                            <p>Описание напитка 10</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal11')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 11</h3>
+                            <p>Описание напитка 11</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal12')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 12</h3>
+                            <p>Описание напитка 12</p>
+                        </div>
+                        <div class="card" onclick="openModal('modal13')">
+                            <img src="path/to/your-image.jpg" alt="Drink Image">
+                            <h3>Напиток 13</h3>
+                            <p>Описание напитка 13</p>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
+    <!-- Модальные окна -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Напиток 1</h2>
+            <div class="modal-description">
+                <p>Подробное описание напитка 1. Здесь можно разместить информацию о составе, вкусах, особенностях и истории напитка.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Для остальных модальных окон (modal2, modal3, ..., modal13) аналогичный код -->
+    <!-- ... -->
+
     <script>
-        function searchTable() {
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        function searchCards() {
             var input = document.getElementById('searchInput');
             var filter = input.value.toUpperCase();
-            var table = document.querySelector('table');
-            var trs = table.querySelectorAll('tbody tr');
+            var cardsWrapper = document.getElementById('cardsWrapper');
+            var cards = cardsWrapper.querySelectorAll('.card');
 
-            trs.forEach(function(row) {
-                var tdName = row.querySelector('td:nth-child(1)').textContent.toUpperCase();
-                var tdSurname = row.querySelector('td:nth-child(2)').textContent.toUpperCase();
+            cards.forEach(function(card) {
+                var cardTitle = card.querySelector('h3').textContent.toUpperCase();
+                var cardDescription = card.querySelector('p').textContent.toUpperCase();
 
-                if (tdName.indexOf(filter) > -1 || tdSurname.indexOf(filter) > -1) {
-                    row.style.display = '';
+                if (cardTitle.indexOf(filter) > -1 || cardDescription.indexOf(filter) > -1) {
+                    card.style.display = '';
                 } else {
-                    row.style.display = 'none';
+                    card.style.display = 'none';
                 }
             });
         }
