@@ -68,7 +68,7 @@
 
         .table-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 100%;
             margin: auto;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -111,19 +111,6 @@
             overflow-y: auto;
         }
 
-        .filter-container button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .filter-container button:hover {
-            background-color: #45a049;
-        }
-
         .search-container input {
             width: 300px;
             display: block;
@@ -149,9 +136,9 @@
             </header>
 
             <section class="content">
+                <!-- Поиск и фильтры над таблицей -->
                 <div class="filter-container">
                     <input type="text" id="searchInput" placeholder="Поиск по имени или фамилии..." onkeyup="searchTable()">
-
                     <select id="dateFilter" onchange="filterTable()">
                         <option value="">Выберите дату</option>
                         <option value="10/18/1985">10/18/1985</option>
@@ -167,6 +154,7 @@
                     </select>
                 </div>
 
+                <!-- Таблица -->
                 <div class="table-container">
                     <div class="scrollable">
                         <table>

@@ -13,7 +13,7 @@
 
         .table-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 100%; /* Таблица будет на всю ширину */
             margin: auto;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -44,13 +44,16 @@
             overflow-y: auto;
         }
 
+        /* Стили для поиска */
         .search-container {
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .search-container input {
             padding: 10px;
-            width: 100%;
+            width: 80%;
+            max-width: 500px; /* Ограничиваем максимальную ширину */
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -65,7 +68,7 @@
             <a href="table.html" class="tab-button">Table</a>
             <a href="regular.html" class="tab-button">Regular</a>
             <a href="cards.html" class="tab-button active">Cards</a>
-            <a href="cards.html" class="tab-button active">Workers</a>
+            <a href="workers.html" class="tab-button active">Workers</a>
         </div>
 
         <div class="main-content">
@@ -76,10 +79,13 @@
 
             <section class="content">
                 <h2>Таблица постоянных клиентов</h2>
+                
+                <!-- Поиск -->
                 <div class="search-container">
                     <input type="text" id="searchInput" placeholder="Поиск по имени или фамилии..." onkeyup="searchTable()">
                 </div>
 
+                <!-- Таблица -->
                 <div class="table-container">
                     <div class="scrollable">
                         <table>

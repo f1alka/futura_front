@@ -63,3 +63,6 @@ document.getElementById('register-form').addEventListener('submit', function(e) 
     alert('Регистрация успешна!');
     closeRegistrationWindow(); // Закрытие окна после успешной регистрации
 });
+
+
+  
